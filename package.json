@@ -1,0 +1,16 @@
+{
+   "name": "averagecqbysample",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "Christopher Kennedy",
+   "license": "ISC",
+   "dependencies": {
+      "@aternus/csv-to-xlsx": "^2.0.3",
+      "exceljs": "^4.3.0",
+      "export-to-csv": "^0.2.1"
+   }
+}
