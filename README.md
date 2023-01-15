@@ -4,7 +4,7 @@ How?
 
 2. Download this code repo, unzip it
 
-3. In the code's directory, copy & paste the .xlsx input spreadsheet (name it 'input.xlsx')
+3. In the code's directory, copy & paste the .xlsx input spreadsheet (name it 'input.xlsx' or change the 'input' variable in the code)
 
 4. In the command line (in that directory) run `npm i` to install dependencies
 
