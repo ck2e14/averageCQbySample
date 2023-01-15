@@ -9,7 +9,7 @@ import {
 } from "fs";
 import csv from "csvtojson";
 
-main().catch(e => console.log(e));
+main().catch(error => console.log(error));
 
 async function main() {
    let inputPath = "./input.xlsx",
