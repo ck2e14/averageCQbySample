@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as XLSX from "xlsx/xlsx.mjs";
 import {
    appendFileSync as append,
-   unlinkSync as delete,
+   unlinkSync as del,
    writeFileSync as write,
 } from "fs";
 import csv from "csvtojson";
@@ -12,14 +12,14 @@ import csv from "csvtojson";
 main().catch(error => console.log(error));
 
 async function main() {
-   let inputPath = "./input.xlsx",
-      tempInputCSV = "./tempInputCSV.csv",
-      outputPath = `./${new Date().toDateString()}-output.csv`;
+   let input = "./input.xlsx",
+      temp = "./temp.csv",
+      output = `./${new Date().toDateString()}-output.csv`;
 
    XLSX.set_fs(fs);
-   XLSX.writeFile(XLSX.readFile(inputPath), tempInputCSV, { bookType: "csv" });
+   XLSX.writeFile(XLSX.readFile(input), temp, { bookType: "csv" });
 
-   let rows = await csv().fromFile(tempInputCSV),
+   let rows = await csv().fromFile(temp),
       cache = {},
       freq = {};
 
@@ -31,12 +31,12 @@ async function main() {
       freq[id] ? freq[id]++ : (freq[id] = 1);
    }
 
-   write(outputPath, "SampleID,CQ average\n");
+   write(output, "SampleID,CQ average\n");
 
    for (let sample in cache) {
       let val = (cache[sample] / freq[sample]).toFixed(2);
-      append(outputPath, `${sample},${val}\n`);
+      append(output, `${sample},${val}\n`);
    }
 
-   delete(tempInputCSV);
+   del(temp);
 }
