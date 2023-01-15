@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as XLSX from "xlsx/xlsx.mjs";
 import {
    appendFileSync as append,
-   unlinkSync as del,
+   unlinkSync as delete,
    writeFileSync as write,
 } from "fs";
 import csv from "csvtojson";
@@ -38,5 +38,5 @@ async function main() {
       append(outputPath, `${sample},${val}\n`);
    }
 
-   del(tempInputCSV);
+   delete(tempInputCSV);
 }
