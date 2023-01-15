@@ -9,15 +9,12 @@ import {
 } from "fs";
 import csv from "csvtojson";
 
-let print = console.log;
-let now = () => new Date().toDateString();
-
 main().catch(e => print(e));
 
 async function main() {
    let inputPath = "./input.xlsx",
       tempInputCSV = "./tempInputCSV.csv",
-      outputPath = `./${now()}-output.csv`;
+      outputPath = `./${new Date().toDateString()}-output.csv`;
 
    XLSX.set_fs(fs);
    XLSX.writeFile(XLSX.readFile(inputPath), tempInputCSV, { bookType: "csv" });
