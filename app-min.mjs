@@ -2,7 +2,11 @@
 
 import * as fs from "fs";
 import * as XLSX from "xlsx/xlsx.mjs";
-import { appendFileSync, unlinkSync, writeFileSync } from "fs";
+import {
+   appendFileSync as append,
+   unlinkSync as del,
+   writeFileSync as write,
+} from "fs";
 import csv from "csvtojson";
 
 let print = console.log;
@@ -30,13 +34,12 @@ async function main() {
       freq[id] ? freq[id]++ : (freq[id] = 1);
    }
 
-   writeFileSync(outputPath, "SampleID,CQ average\n");
+   write(outputPath, "SampleID,CQ average\n");
 
-   for (let sample in cache)
-      appendFileSync(
-         outputPath,
-         `${sample},${(cache[sample] / freq[sample]).toFixed(2)}\n`
-      );
+   for (let sample in cache) {
+      let val = (cache[sample] / freq[sample]).toFixed(2);
+      append(outputPath, `${sample},${val}\n`);
+   }
 
-   unlinkSync(tempInputCSV);
+   del(tempInputCSV);
 }
